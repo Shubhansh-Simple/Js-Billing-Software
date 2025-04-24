@@ -1,0 +1,199 @@
+<!DOCTYPE HTML>
+<html lang='en'>
+  <head>
+    <title> Bill Calculator </title>
+    {% load static %}
+
+    <meta charset="utf-8">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1">
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css"
+          rel="stylesheet">
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+  </head>
+
+  <!--BODY START-->
+  <body class='text-center'>
+
+    <!--HEADING OF APPLICATION-->
+    <br>
+    <h1 class='bg-dark text-success'>
+      Icecream Order Software
+    </h1>
+    <br>
+
+    <!--------------------
+       SECTION 1 STARTS
+    --------------------->
+    <div class='container-fluid bg-light'>
+
+      <!--ICECREAM SELECTION WIDGET-->
+      <select class="form-select form-select"
+              aria-label="Default select example"
+              id='icecreamSelectWidgetId'
+              onchange=selectedIcecream(this.options[this.selectedIndex])>
+
+        <!--ICECREAM SELECT WIDGET FIRST ITEM-->
+        <option selected value=0>Select Your Icecream</option>
+
+        <!--WILL ADD OPTION ITEMS VIA JAVASCRIPT-->
+
+      </select></br>
+      <!-----------------
+         SECTION 1 ENDS
+      ------------------>
+
+
+      <!--------------------
+         SECTION 2 STARTS
+      --------------------->
+      <!--Quantity Input Using Radio Button-->
+      <div class="container table-responsive">
+
+        <table class="table table-borderless">
+
+          <!--TABLE HEAD-->
+          <thead> <tr class="text-primary text-center"> <th colspan="5"> Choose Your Quantity </th> </tr> </thead>
+
+          <tbody>
+
+            <!-- FIRST ROW QUANTITY BUTTONS-->
+            <tr>
+              <td>
+                <input type="radio" class="btn-check" name="quantityRadioBtnId" id="quantity_1" value="1" autocomplete="off">
+                <label class="btn btn-outline-info" for="quantity_1">1</label>
+              </td>
+
+              <td>
+                <input type="radio" class="btn-check" name="quantityRadioBtnId" id="quantity_2" value="2" autocomplete="off">
+                <label class="btn btn-outline-info" for="quantity_2">2</label>
+              </td>
+
+              <td>
+                <input type="radio" class="btn-check" name="quantityRadioBtnId" id="quantity_3" value="3" autocomplete="off">
+                <label class="btn btn-outline-info" for="quantity_3">3</label>
+              </td>
+
+              <td>
+                <input type="radio" class="btn-check" name="quantityRadioBtnId" id="quantity_4" value="4" autocomplete="off">
+                <label class="btn btn-outline-info" for="quantity_4">4</label>
+              </td>
+
+              <td>
+                <input type="radio" class="btn-check" name="quantityRadioBtnId" id="quantity_5" value="5" autocomplete="off">
+                <label class="btn btn-outline-info" for="quantity_5">5</label>
+              </td>
+            </tr>
+
+            <!-- SECOND ROW QUANTITY BUTTONS-->
+            <tr>
+              <td>
+                <input type="radio" class="btn-check" name="quantityRadioBtnId" id="quantity_6" value="6" autocomplete="off">
+                <label class="btn btn-outline-info" for="quantity_6">6</label>
+              </td>
+
+              <td>
+                <input type="radio" class="btn-check" name="quantityRadioBtnId" id="quantity_7" value="7" autocomplete="off">
+                <label class="btn btn-outline-info" for="quantity_7">7</label>
+              </td>
+
+              <td>
+                <input type="radio" class="btn-check" name="quantityRadioBtnId" id="quantity_8" value="8" autocomplete="off">
+                <label class="btn btn-outline-info" for="quantity_8">8</label>
+              </td>
+
+              <td>
+                <input type="radio" class="btn-check" name="quantityRadioBtnId" id="quantity_9" value="9" autocomplete="off">
+                <label class="btn btn-outline-info" for="quantity_9">9</label>
+              </td>
+
+              <td>
+                <input type="radio" class="btn-check" name="quantityRadioBtnId" id="quantity_10" value="10" autocomplete="off">
+                <label class="btn btn-outline-info" for="quantity_10">10</label>
+              </td>
+            </tr>
+
+          </tbody>
+        </table>
+      </div>
+
+      <!--Submit Button-->
+      <button type="button"
+              class="w-20 btn btn-danger"
+              onclick="addIcecream()">
+          <b id='msgSubmitId'>Order Icecream</b>
+      </button>
+
+      <!-- Reset Button -->
+      <button type="button"
+              class="w-20 btn btn-dark"
+              onclick="removeAllIcecream()">
+          <b id='msgResetId'>Reset Record</b>
+      </button>
+    </div>
+    <!-----------------
+       SECTION 2 ENDS
+    ------------------>
+
+    <hr>
+    <!-------------------
+       SECTION 3 STARTS
+    -------------------->
+    <div class="container table-responsive">
+
+      <table class="table table-striped">
+
+        <!--Table Head-->
+        <thead>
+          <tr class='text-danger'>
+            <th id='todayDate' colspan='5'>
+              Today's Date
+            </th>
+          </tr>
+
+          <tr class="bg-dark text-white"
+              style="border-bottom:2px solid black">
+            <th>S.No</th>
+            <th style="text-align : center">Description</th>
+            <th>Quantity</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+
+        <!--Dynamic Table Body-->
+        <tbody id='billItemsShowId'>
+        </tbody>
+
+        <tfoot>
+          <tr>
+            <th></th>
+            <th></th>
+            <th></th>
+            <th></th>
+          </tr>
+
+          <!--Totalling -->
+          <tr style="border-top:2px solid black;
+                     border-bottom:2px solid black;">
+            <th></th>
+            <th><i>Totalling</i></th>
+            <th id='totallingShowId'>0
+             <small>ctn</small>
+            </th>
+          </tr>
+        </tfoot>
+
+      </table>
+    </div>
+    <!-----------------
+       SECTION 3 ENDS
+    ------------------>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+
+    <!-- JAVASCRIPT CODE FOR BILL CALCULATOR WEB PAGE -->
+    <script type="module" src="{% static 'js/backend.js' %}"></script>
+  </body>
+</html>
