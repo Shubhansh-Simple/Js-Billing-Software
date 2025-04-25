@@ -1,7 +1,20 @@
 /* icecreamData.js */
 
-// Storing icecream details in an unmodifiedable manner which act as an DB
+
+/*
+ * CONSTANT IN THIS FILE
+ *
+ * - icecreamData
+ * - icecreamMargin
+ */
+
+
+///////////////////
+// ICECREAM DATA //
+///////////////////
 const icecreamData = {
+  /* Storing icecream info related to primary id, their name, each box price & option group name */
+
   "1":  { "name": "Large Vanilla Cup",             "price": 240, "optgroup": "10rs" },
   "2":  { "name": "Large Pista Cup",               "price": 240, "optgroup": "10rs" },
   "3":  { "name": "Large Strawberry Cup",          "price": 240, "optgroup": "10rs" },
@@ -28,24 +41,24 @@ const icecreamData = {
   "24": { "name": "Mango Ripple",                  "price": 360, "optgroup": "20rs" },
   "25": { "name": "Black Currant",                 "price": 360, "optgroup": "20rs" },
   "26": { "name": "N Strawberry Ripple",           "price": 360, "optgroup": "20rs" },
-  "27": { "name": "Vanilla Cone",                  "price": 240, "optgroup": "25rs" },
-  "28": { "name": "Pista Cone",                    "price": 240, "optgroup": "25rs" },
-  "29": { "name": "Rajbhog Kulfi",                 "price": 300, "optgroup": "25rs" },
-  "30": { "name": "Pista Kulfi",                   "price": 300, "optgroup": "25rs" },
-  "31": { "name": "Strawberry Ripple",             "price": 450, "optgroup": "25rs" },
-  "32": { "name": "Kesar Pista Cup",               "price": 450, "optgroup": "25rs" },
+  "27": { "name": "Rajbhog Kulfi",                 "price": 300, "optgroup": "25rs" },
+  "28": { "name": "Pista Kulfi",                   "price": 300, "optgroup": "25rs" },
+  "29": { "name": "Strawberry Ripple",             "price": 450, "optgroup": "25rs" },
+  "30": { "name": "Kesar Pista Cup",               "price": 450, "optgroup": "25rs" },
+  "31": { "name": "Large Vanilla Cone",            "price": 240, "optgroup": "30rs" },
+  "32": { "name": "Large Pista Cone",              "price": 240, "optgroup": "30rs" },
   "33": { "name": "Large Butter Scotch",           "price": 280, "optgroup": "35rs" },
   "34": { "name": "Large Choco Chips",             "price": 280, "optgroup": "35rs" },
-  "35": { "name": "Large Oreo Delight Cone",       "price": 240, "optgroup": "35rs" },
+  "35": { "name": "Large Oreo Delight",            "price": 240, "optgroup": "35rs" },
   "36": { "name": "Choco Frosty",                  "price": 560, "optgroup": "35rs" },
   "37": { "name": "American Nuts",                 "price": 240, "optgroup": "35rs" },
   "38": { "name": "Fruit Cocktail",                "price": 240, "optgroup": "35rs" },
   "39": { "name": "Maharaj Bhog Tub",              "price": 360, "optgroup": "45rs" },
   "40": { "name": "Rajwadi Kulfi Tub",             "price": 360, "optgroup": "45rs" },
-  "41": { "name": "Matka Kulfi",                   "price": 600, "optgroup": "45rs" },
-  "42": { "name": "Casatta Slice",                 "price": 270, "optgroup": "45rs" },
-  "43": { "name": "Housefull Sundae",              "price": 360, "optgroup": "45rs" },
-  "44": { "name": "Cream N Cookies Cone",          "price": 400, "optgroup": "45rs" },
+  "41": { "name": "Matka Kulfi",                   "price": 600, "optgroup": "50rs" },
+  "42": { "name": "Casatta Slice",                 "price": 300, "optgroup": "50rs" },
+  "43": { "name": "Housefull Sundae",              "price": 400, "optgroup": "50rs" },
+  "44": { "name": "Cream N Cookies Cone",          "price": 400, "optgroup": "50rs" },
   "45": { "name": "Vanilla (700ml+700ml)",         "price": 220, "optgroup": "COMBO PACKS" },
   "46": { "name": "Strawberry (700ml+700ml)",      "price": 230, "optgroup": "COMBO PACKS" },
   "47": { "name": "Butter Scotch (700ml+700ml)",   "price": 270, "optgroup": "COMBO PACKS" },
@@ -64,4 +77,15 @@ const icecreamData = {
   "60": { "name": "Maharaj Bhog 1L",               "price": 280, "optgroup": "1 Litre PACKS" }
 };
 
-export default icecreamData;
+
+//////////////////////
+// ICECREEAM MARGIN //
+//////////////////////
+const icecreamMargin = {
+  /* Storing % margins on each icecream & overall discount of bill  */
+
+  "discount_percent"         : 22,          // 22% less on each icecream
+  "overall_discount_percent" : 5            // 5% less of overall amount
+};
+
+export {icecreamData, icecreamMargin};

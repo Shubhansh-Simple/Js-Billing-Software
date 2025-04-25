@@ -20,7 +20,7 @@
     <!--HEADING OF APPLICATION-->
     <br>
     <h1 class='bg-dark text-success'>
-      Icecream Order Software
+      Icecream Billing Software
     </h1>
     <br>
 
@@ -143,22 +143,46 @@
     -------------------->
     <div class="container table-responsive">
 
+      <div class='text-center text-danger'><b>Lucky's Invoice</b></div>
+
+      <div class='row'>
+        <div class='col text-start'>
+          <small class='bg-light'><b><i id='todaysDateShowId'>Today's Date</i></b></small>
+        </div>
+
+        <div class='col text-end' onclick="invoiceNumberInput()">
+          <small class='bg-light'><b>Invoice No. <i id='invoiceShowId'>-_-</i></b></small>
+        </div>
+      </div>
+
       <table class="table table-striped">
 
         <!--Table Head-->
         <thead>
-          <tr class='text-danger'>
-            <th id='todayDate' colspan='5'>
-              Today's Date
+          <tr class='text-dark'>
+            <th colspan='2' style='vertical-align:middle;'>
             </th>
+            <th></th>
+            <th>
+            </th>
+            <th style='vertical-align:middle;' onclick=>
+            </th>
+            <th></th>
+            <th></th>
           </tr>
+
+          <tr> <th></th> <th></th> <th></th> <th></th> <th></th> <th></th> </tr>
 
           <tr class="bg-dark text-white"
               style="border-bottom:2px solid black">
             <th>S.No</th>
             <th style="text-align : center">Description</th>
             <th>Quantity</th>
-            <th>Action</th>
+            <th>Rate</th>
+            <th>Amount</th>
+            <th></th>
+            <th></th>
+            <th colspan='2'>Action</th>
           </tr>
         </thead>
 
@@ -172,16 +196,41 @@
             <th></th>
             <th></th>
             <th></th>
+            <th></th>
+            <th></th>
+            <th></th>
           </tr>
 
-          <!--Totalling -->
-          <tr style="border-top:2px solid black;
-                     border-bottom:2px solid black;">
-            <th></th>
-            <th><i>Totalling</i></th>
+          <!--SUB TOTAL AMOUNT-->
+          <tr style="border-top:2px solid black;border-bottom:2px solid black;">
+            <th colspan='2'><i>Totalling</i></th>
             <th id='totallingShowId'>0
              <small>ctn</small>
             </th>
+            <th>Sub Total</th>
+            <th id='subTotalShowId'>0 rs</th>
+            <th></th>
+            <th></th>
+          </tr>
+
+          <!--DISCOUNT-->
+          <tr>
+            <th></th>
+            <th></th>
+            <th></th>
+            <td><i>Discount</i></td>
+            <td id='discountShowId'>0 rs</td>
+            <th></th>
+            <th></th>
+          </tr>
+
+          <!--Totalling -->
+          <tr>
+            <th></th>
+            <th></th>
+            <th></th>
+            <th style="border-top:2px solid black;border-bottom:2px solid black;">Total Amount</th>
+            <th id="totalShowId" style="border-top:2px solid black;border-bottom:2px solid black;">0.00 <small>rs</small></th>
           </tr>
         </tfoot>
 

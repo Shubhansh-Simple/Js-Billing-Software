@@ -50,7 +50,7 @@ function isValidQuantity(quantity_input){
 function isValidIcecreamSelectObject(icecream){
   /* Check weather provided parameter is valid icecream's select widget object or not */
 
-  if ( icecream && typeof icecream  === 'object' && icecream.hasAttribute('id')){ return true; }
+  if ( icecream && typeof icecream  === 'object' && icecream.hasAttribute('id') && icecream.hasAttribute('value')){ return true; }
 
   // Invalid Object
   return false;
