@@ -5,19 +5,19 @@
   <b>Live Demo</b>
 </a>
 
-# Responsive Portfolio Application
+# Billing Software
 <p align="center">
   <a href="https://shub.pythonanywhere.com/projects">
-    <img alt="Responsive" src="https://raw.githubusercontent.com/Shubhansh-Simple/Portfolio-Project/main/Screenshots/ResponsiveView.png" height="300" /> 
+    <img alt="Responsive" src="https://raw.githubusercontent.com/Shubhansh-Simple/Js-Billing-Software/refs/heads/main/images/first-image.png" height="300" /> 
   </a>
 </p>
 
 <hr>
 
-# Profile View
+# Response View On Mobile
 <p align="center">
   <a href="https://shub.pythonanywhere.com/projects">
-    <img alt="About" src="https://raw.githubusercontent.com/Shubhansh-Simple/Portfolio-Project/main/Screenshots/AboutView.png" height="300" /> 
+    <img alt="About" src="https://raw.githubusercontent.com/Shubhansh-Simple/Js-Billing-Software/refs/heads/main/images/first-image.png" height="300" /> 
   </a>
 </p>
 
