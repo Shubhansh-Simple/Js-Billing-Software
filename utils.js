@@ -159,11 +159,16 @@ function prepareEntireBillHTML(){
     let billItem    = '';                               // each item's html row
     let each_amount = 0;                                // each item's 22% less amount of an item
 
+    const numeric_ids = [];
+
+    /* Collect only numeric ids */
     Object.keys(localStorage).forEach(key=>{
+      if (!isNaN(key)){ numeric_ids.push(key) }
+    });
 
-      /* Only select keys having integer value */
-      if ( Number.isInteger( Number(key[0]) ) ){
+    const sorted_ids = numeric_ids.sort((a,b) => Number(a) - Number(b));  // sort the ids
 
+    sorted_ids.map(key => {
         let icecream  = icecreamData[key];              // ordered icecream i.e. { "name": "Large Vanilla Cup", "price": 240, "optgroup": "10rs" },
         let quantity  = localStorage.getItem(key);      // ordered quantity
         totalling    += parseInt(quantity);             // count total icecream quantity
@@ -172,7 +177,6 @@ function prepareEntireBillHTML(){
         entireBill               += billItem;                     // append bill item row's html code
         sub_total_amount         += parseFloat(each_amount);      // calculate 22% less amount total
         counter                  += 1;
-      }
     });
   }
 
