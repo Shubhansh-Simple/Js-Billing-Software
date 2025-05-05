@@ -17,8 +17,7 @@
 
 // local
 import {icecreamData} from "./icecreamData.js";
-import { 
-         updateInnerHTML,
+import { updateInnerHTML,
          prepareBillItemHTML,
          prepareEntireBillHTML,
          prepareSelectWidgetItemHTML,
@@ -72,12 +71,13 @@ function invoiceNumberInput(){
 ///////////////////////
 function selectedIcecream(icecream){
   /*
-   * Retrieve the selected icecream from quantity radio button
+   * Retrieve the below property of selected icecream from icecream selection menu
    *
    * <option id="1" value="240">Large Vanilla Cup</option>"
-   *   .id is 1
-   *   .value is 240
-   *   .text  is Large Vanilla Cup
+   *
+   * selected_icecream.id    is 1                             # unique id of the icecream
+   * selected_icecream.value is 240                           # price of an icecream box
+   * selected_icecream.text  is Large Vanilla Cup             # name of the selected icecream
    */
   selected_icecream = icecream;
 }
@@ -147,6 +147,15 @@ function addIcecream(){
   let change_in_amount = 0;                                                                      // storing single unit amount
   let sub_total        = parseFloat(localStorage.getItem('sub_total'));                          // total amount with 22% discount
 
+  
+  /* Raise error if selected icecream's id didn't exists in our db */
+  if (!icecreamData.hasOwnProperty(icecream_id)){
+    alert('Please select an valid icecream or refresh the page');
+    return;
+  }
+
+  let icecream = icecreamData[icecream_id];
+
   /*
    * NEWLY ADDED ICECREAM
    */
@@ -154,6 +163,7 @@ function addIcecream(){
 
     if (totalling === 0){ updateInnerHTML('billItemsShowId', null, '') };                        // Remove the 'Item Not Found' msg if fresh application page
 
+    // ERROR HERE
     const serial_number = localStorage.length - 1;                                               // count total entries ( handle totalling, sub_total )
 
     // UPDATE LOCAL STORAGE - quantity
@@ -161,8 +171,7 @@ function addIcecream(){
 
     let [ billItem, amount ] = prepareBillItemHTML(serial_number,                                // APPEND TABLE'S ROW & returns icecream's amount ( 22 % less )
                                                    icecream_id,
-                                                   selected_icecream.text,                       // icecream's name
-                                                   selected_icecream.value,                      // icecream's price
+                                                   icecream,                                     // {"name":"Chocobar","price": 320,"optgroup": "20rs"}
                                                    ordered_quantity);
     /* Amount Of Single Item */
     change_in_amount = Number(amount);
@@ -175,10 +184,10 @@ function addIcecream(){
    * ICECREAM ITEM ALREADY EXISTS
    */
   else{
-    let old_quantity            = parseInt(localStorage.getItem(icecream_id));                      // quantity that exists before newly ordered quantity
-    let updated_quantity        = old_quantity + ordered_quantity;                                  // total quantity after newly ordered
-    let updated_amount          = getCalculatedAmount(updated_quantity, selected_icecream.value);   // get updated amount after increasing the ordered quantity
-    let ordered_quantity_amount = getCalculatedAmount(ordered_quantity, selected_icecream.value);   // amount of quantity ordered
+    let old_quantity            = parseInt(localStorage.getItem(icecream_id));                   // quantity that exists before newly ordered quantity
+    let updated_quantity        = old_quantity + ordered_quantity;                               // total quantity after newly ordered
+    let updated_amount          = getCalculatedAmount(updated_quantity, icecream.price);         // get updated amount after increasing the ordered quantity
+    let ordered_quantity_amount = getCalculatedAmount(ordered_quantity, icecream.price);         // amount of quantity ordered
 
     /* Amount Of Single Item */
     change_in_amount = Number(ordered_quantity_amount);

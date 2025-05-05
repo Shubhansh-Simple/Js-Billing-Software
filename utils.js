@@ -57,7 +57,7 @@ function updateInnerHTML(ele_id, output_type, value) {
 ////////////////////////////
 // PREPARE BILL ITEM HTML //
 ////////////////////////////
-function prepareBillItemHTML( serialNo, icecream_id, icecream_name, rate, quantity ){
+function prepareBillItemHTML( serialNo, icecream_id, icecream, quantity ){
   /* 
    * Prepare and return bill item's row <tr> html code of the bill table 
    * 
@@ -93,7 +93,7 @@ function prepareBillItemHTML( serialNo, icecream_id, icecream_name, rate, quanti
   let icecream_amount_show_id   = `amountShowId_${icecream_id}`;
 
   /* Calculating amount for each icecream after discount */
-  let amount = getCalculatedAmount(quantity, rate);
+  let amount = getCalculatedAmount(quantity, icecream.price);
 
   /* Constructed HTML code with calculated per icecream box amount after discount */
   let billItem = `
@@ -105,7 +105,7 @@ function prepareBillItemHTML( serialNo, icecream_id, icecream_name, rate, quanti
 
             <!--Icecream Ordered-->
             <th>
-              ${icecream_name}
+              ${icecream.name}
             </th>
 
             <!--Quantity Ordered-->
@@ -114,7 +114,7 @@ function prepareBillItemHTML( serialNo, icecream_id, icecream_name, rate, quanti
             </td>
 
             <!-- Icecream M.R.P -->
-            <td>${rate}<small>rs</small></td>
+            <td>${icecream.price}<small>rs</small></td>
 
             <!-- Icecream Amount = ( Ordered Quantity X M.R.P ) - 22 % -->
             <td id=${icecream_amount_show_id}>${amount}<small>rs</small></td>
@@ -122,6 +122,9 @@ function prepareBillItemHTML( serialNo, icecream_id, icecream_name, rate, quanti
             <!--Action Buttons-->
             <td></td>
             <td></td>
+            <td>
+              <mark><i><small>${icecream.optgroup}</small></i></mark>
+            </td>
             <td>
               <!-- Edit Button -->
               <button type='button' class='btn btn-sm btn-primary' onclick="updateIcecream('${icecream_quantity_show_id}', '${icecream_amount_show_id}')">
@@ -168,12 +171,13 @@ function prepareEntireBillHTML(){
 
     const sorted_ids = numeric_ids.sort((a,b) => Number(a) - Number(b));  // sort the ids
 
+    /* Showing result in sorted by ids manner */
     sorted_ids.map(key => {
         let icecream  = icecreamData[key];              // ordered icecream i.e. { "name": "Large Vanilla Cup", "price": 240, "optgroup": "10rs" },
         let quantity  = localStorage.getItem(key);      // ordered quantity
         totalling    += parseInt(quantity);             // count total icecream quantity
         
-        [ billItem, each_amount ] = prepareBillItemHTML(counter, key, icecream.name, icecream.price, quantity);
+        [ billItem, each_amount ] = prepareBillItemHTML(counter, key, icecream, quantity);
         entireBill               += billItem;                     // append bill item row's html code
         sub_total_amount         += parseFloat(each_amount);      // calculate 22% less amount total
         counter                  += 1;
@@ -278,7 +282,7 @@ function prepareRecordNotFoundHTML(){
 
   let record_not_found_html = `
         <tr>
-          <th colspan=9>No Recordy Found</th>
+          <th colspan=9>No Record Found</th>
         </tr>
   `
   return record_not_found_html
