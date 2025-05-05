@@ -278,7 +278,7 @@ function prepareRecordNotFoundHTML(){
 
   let record_not_found_html = `
         <tr>
-          <th colspan=8>No Record Found</th>
+          <th colspan=9>No Recordy Found</th>
         </tr>
   `
   return record_not_found_html
