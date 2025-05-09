@@ -104,7 +104,7 @@ function prepareBillItemHTML( serialNo, icecream_id, icecream, quantity ){
             </td>
 
             <!--Icecream Ordered-->
-            <th>
+            <th style="min-width: 150px">
               ${icecream.name}
             </th>
 
